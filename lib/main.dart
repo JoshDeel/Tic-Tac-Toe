@@ -2,32 +2,33 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(TicTacToe());
 
-class MyApp extends StatelessWidget {
-
+/// This Widget is the main application widget.
+class TicTacToe extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return MaterialApp(
-      title: 'Tic Tac Toe',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Tic Tac Toe'),
-        ),
-        body: new Center(
-          child: new Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              new RaisedButton(onPressed: null, child: Text('Disabled Button'),),
-              new RaisedButton(onPressed: () {}, child: Text('Enabled Button'),),
-              new Text('testing something',),
-            ],
+      home: Text("Tic Tac Toe"),
+    );
+  }
+}
+
+
+class HomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Home Page"),
+      ),
+      body: Center(
+        child: RaisedButton(
+          onPressed: (){},
+          child: Text("Tic Tac Toe Game"),
           ),
-        ), 
       ),
     );
   }
