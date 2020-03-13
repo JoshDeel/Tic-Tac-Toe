@@ -8,10 +8,12 @@ void main() => runApp(TicTacToe());
 
 /// This Widget is the main application widget.
 class TicTacToe extends StatelessWidget {
+  static const String _title = "Tic Tac Toe";
   @override
   Widget build(BuildContext context){
     return MaterialApp(
-      home: Text("Tic Tac Toe"),
+      title: _title,
+      home: HomePage(),
     );
   }
 }
@@ -25,10 +27,15 @@ class HomePage extends StatelessWidget {
         title: Text("Home Page"),
       ),
       body: Center(
-        child: RaisedButton(
-          onPressed: (){},
-          child: Text("Tic Tac Toe Game"),
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Expanded(
+              child: Text("Test1")
+            ),
+          ],
+        ),
       ),
     );
   }
