@@ -22,19 +22,42 @@ class _HomePage extends State<MyApp> {
   ];
 
   bool isX = true;
+  bool winner = false;
   int turns;
+  String player = "X";
 
-  void onPressed(int id, String name){
+  // maybe look into returning a new button / using checkIsdiabled ? null : do something else
+
+  void updateState(int id, String player){
+    setState(() {
+      if (gameState[id] == "empty"){
+        gameState[id] = player;
+      }
+      else{
+        print("ERROR ALREADY BEEN CLICKED");
+      }
+    });
+  }
+ // on press, we want increment turns, update the state, check winner / num turns
+  void onPressed(int id, String name, String player){
+    updateState(id, player);
+
     setState(() {
       gameState[id] = "X";
     });
     checkWinner();
+    if (isX){
+      player = "Y";
+    }
+    else{
+      player = "X";
+    }
     print(name);
   }
 
   void checkWinner(){
     if (gameState[0] == gameState[1] && gameState[0] == gameState[2]){
-      print("Hello");
+
     }
     else if(gameState[3] == gameState[4] && gameState[3] == gameState[5]){
 
