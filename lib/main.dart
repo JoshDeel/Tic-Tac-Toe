@@ -1,17 +1,14 @@
-// Copyright 2018 The Flutter team. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
 
 
+class MyApp extends StatefulWidget {
+  _HomePage createState() => new _HomePage();
+}
 
 
-class MyApp extends StatelessWidget {
-  bool isX = true;
-  int turns;
+class _HomePage extends State<MyApp> {
   List<String> gameState = [
     "empty", // button 1
     "empty", // button 2
@@ -24,9 +21,15 @@ class MyApp extends StatelessWidget {
     "empty", // button 9
   ];
 
-  int onPressed(int id){
+  bool isX = true;
+  int turns;
+
+  void onPressed(int id, String name){
+    setState(() {
+      gameState[id] = "X";
+    });
     checkWinner();
-    return id;
+    print(name);
   }
 
   void checkWinner(){
@@ -74,28 +77,75 @@ class MyApp extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                Expanded(
-                  flex: 1,
-                  child: RaisedButton(onPressed: () {onPressed(0);},),
+                
+                Padding(
+                  padding: EdgeInsets.all(5.0),
+                  child: RaisedButton(onPressed: () {onPressed(0, this.gameState[0]);}, child: Text(this.gameState[0]),),
                 ),
 
-                Expanded(
-                  flex: 1,
-                  child: RaisedButton(onPressed: () {onPressed(0);},),
+                Padding(
+                  padding: EdgeInsets.all(5.0),
+                  child: RaisedButton(onPressed: () {onPressed(1, this.gameState[1]);}, child: Text(this.gameState[1]),),
                 ),
 
-                Expanded(
-                  flex: 1,
-                  child: RaisedButton(onPressed: () {onPressed(0);},),
+                Padding(
+                  padding: EdgeInsets.all(5.0),
+                  child: RaisedButton(onPressed: () {onPressed(2, this.gameState[2]);}, child: Text(this.gameState[2]),),
                 ),
 
               ],
             ),
+
+            Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                 mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                
+                Padding(
+                  padding: EdgeInsets.all(5.0),
+                  child: RaisedButton(onPressed: () {onPressed(3, this.gameState[3]);}, child: Text(this.gameState[3]),),
+                ),
+
+                Padding(
+                  padding: EdgeInsets.all(5.0),
+                  child: RaisedButton(onPressed: () {onPressed(4, this.gameState[4]);}, child: Text(this.gameState[4]),),
+                ),
+
+                Padding(
+                  padding: EdgeInsets.all(5.0),
+                  child: RaisedButton(onPressed: () {onPressed(5, this.gameState[5]);}, child: Text(this.gameState[5]),),
+                ),
+
+              ],
+            ),
+
+            Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                
+                Padding(
+                  padding: EdgeInsets.all(5.0),
+                  child: RaisedButton(onPressed: () {onPressed(6, this.gameState[6]);}, child: Text(this.gameState[6]),),
+                ),
+
+                Padding(
+                  padding: EdgeInsets.all(5.0),
+                  child: RaisedButton(onPressed: () {onPressed(7, this.gameState[7]);}, child: Text(this.gameState[7]),),
+                ),
+
+                Padding(
+                  padding: EdgeInsets.all(5.0),
+                  child: RaisedButton(onPressed: () {onPressed(8, this.gameState[8]);}, child: Text(this.gameState[8]),),
+                ),
+
+              ],
+            ),
+
           ],
         ),
       ), 
     ),
   );
 }
-
 }
