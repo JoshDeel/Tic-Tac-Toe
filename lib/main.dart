@@ -21,13 +21,35 @@ class _HomePage extends State<MyApp> {
     "empty", // button 9
   ];
 
+  void resetGame(){
+    gameState = [
+    "empty", // button 1
+    "empty", // button 2
+    "empty", // button 3
+    "empty", // button 4
+    "empty", // button 5
+    "empty", // button 6
+    "empty", // button 7
+    "empty", // button 8
+    "empty", // button 9
+    ];
+  }
+
   bool isX = true;
   bool winner = false;
-  int turns;
+  int turns = 0;
   String player = "X";
+  
+  bool isBtnDisabled(int id){
+    if (gameState[id] == "empty"){
+      return false;
+    }
+    else{
+      return true;
+    }
+  }
 
   // maybe look into returning a new button / using checkIsdiabled ? null : do something else
-
   void updateState(int id, String player){
     setState(() {
       if (gameState[id] == "empty"){
@@ -38,22 +60,45 @@ class _HomePage extends State<MyApp> {
       }
     });
   }
+
  // on press, we want increment turns, update the state, check winner / num turns
-  void onPressed(int id, String name, String player){
+  void onPressed(int id, String name){
     updateState(id, player);
 
     setState(() {
-      gameState[id] = "X";
+      gameState[id] = player;
     });
     checkWinner();
     if (isX){
       player = "Y";
+      isX = !isX;
     }
     else{
       player = "X";
+      isX = !isX;
     }
-    print(name);
+    print(gameState[id]);
   }
+
+void resetBtnPressed(){
+  setState(() {
+    gameState = [
+      "empty", // button 1
+      "empty", // button 2
+      "empty", // button 3
+      "empty", // button 4
+      "empty", // button 5
+      "empty", // button 6
+      "empty", // button 7
+      "empty", // button 8
+      "empty", // button 9
+    ];
+    isX = true;
+    winner = false;
+    turns = 0;
+    player = "X";
+  });
+}
 
   void checkWinner(){
     if (gameState[0] == gameState[1] && gameState[0] == gameState[2]){
@@ -103,17 +148,23 @@ class _HomePage extends State<MyApp> {
                 
                 Padding(
                   padding: EdgeInsets.all(5.0),
-                  child: RaisedButton(onPressed: () {onPressed(0, this.gameState[0]);}, child: Text(this.gameState[0]),),
+                  child: RaisedButton(
+                    onPressed: isBtnDisabled(0) ? null : () {onPressed(0, this.gameState[0]);},
+                     child: Text(this.gameState[0]),),
                 ),
 
                 Padding(
                   padding: EdgeInsets.all(5.0),
-                  child: RaisedButton(onPressed: () {onPressed(1, this.gameState[1]);}, child: Text(this.gameState[1]),),
+                  child: RaisedButton(
+                    onPressed: isBtnDisabled(1) ? null : () {onPressed(1, this.gameState[1]);}, 
+                    child: Text(this.gameState[1]),),
                 ),
 
                 Padding(
                   padding: EdgeInsets.all(5.0),
-                  child: RaisedButton(onPressed: () {onPressed(2, this.gameState[2]);}, child: Text(this.gameState[2]),),
+                  child: RaisedButton(
+                    onPressed: isBtnDisabled(2) ? null : () {onPressed(2, this.gameState[2]);},
+                    child: Text(this.gameState[2]),),
                 ),
 
               ],
@@ -126,17 +177,23 @@ class _HomePage extends State<MyApp> {
                 
                 Padding(
                   padding: EdgeInsets.all(5.0),
-                  child: RaisedButton(onPressed: () {onPressed(3, this.gameState[3]);}, child: Text(this.gameState[3]),),
+                  child: RaisedButton(
+                    onPressed: isBtnDisabled(3) ? null : () {onPressed(3, this.gameState[3]);}, 
+                    child: Text(this.gameState[3]),),
                 ),
 
                 Padding(
                   padding: EdgeInsets.all(5.0),
-                  child: RaisedButton(onPressed: () {onPressed(4, this.gameState[4]);}, child: Text(this.gameState[4]),),
+                  child: RaisedButton(
+                    onPressed: isBtnDisabled(4) ? null : () {onPressed(4, this.gameState[4]);}, 
+                    child: Text(this.gameState[4]),),
                 ),
 
                 Padding(
                   padding: EdgeInsets.all(5.0),
-                  child: RaisedButton(onPressed: () {onPressed(5, this.gameState[5]);}, child: Text(this.gameState[5]),),
+                  child: RaisedButton(
+                    onPressed: isBtnDisabled(5) ? null : () {onPressed(5, this.gameState[5]);}, 
+                    child: Text(this.gameState[5]),),
                 ),
 
               ],
@@ -149,24 +206,30 @@ class _HomePage extends State<MyApp> {
                 
                 Padding(
                   padding: EdgeInsets.all(5.0),
-                  child: RaisedButton(onPressed: () {onPressed(6, this.gameState[6]);}, child: Text(this.gameState[6]),),
+                  child: RaisedButton(
+                    onPressed: isBtnDisabled(6) ? null : () {onPressed(6, this.gameState[6]);}, 
+                    child: Text(this.gameState[6]),),
                 ),
 
                 Padding(
                   padding: EdgeInsets.all(5.0),
-                  child: RaisedButton(onPressed: () {onPressed(7, this.gameState[7]);}, child: Text(this.gameState[7]),),
+                  child: RaisedButton(
+                    onPressed: isBtnDisabled(7) ? null :  () {onPressed(7, this.gameState[7]);}, 
+                    child: Text(this.gameState[7]),),
                 ),
 
                 Padding(
                   padding: EdgeInsets.all(5.0),
-                  child: RaisedButton(onPressed: () {onPressed(8, this.gameState[8]);}, child: Text(this.gameState[8]),),
+                  child: RaisedButton(
+                    onPressed: isBtnDisabled(8) ? null :  () {onPressed(8, this.gameState[8]);}, 
+                    child: Text(this.gameState[8]),),
                 ),
-
               ],
             ),
-
+            RaisedButton(onPressed: () {resetBtnPressed();}, child: Text("Press to reset the game"),),
           ],
         ),
+        
       ), 
     ),
   );
