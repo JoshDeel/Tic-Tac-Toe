@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tictactoe/winnerPage.dart' as winnerPage;
 
 void main() => runApp(MyApp());
 
@@ -61,13 +62,18 @@ class _HomePage extends State<MyApp> {
     });
   }
 
+  void openWinnerPage(BuildContext context){
+    Navigator.of(context).pushNamed('/winnerPage');
+  }
+
  // on press, we want increment turns, update the state, check winner / num turns
   void onPressed(int id, String name){
     updateState(id, player);
-
+    /**
     setState(() {
       gameState[id] = player;
     });
+     */
     checkWinner();
     if (isX){
       player = "Y";
@@ -102,30 +108,30 @@ void resetBtnPressed(){
 
   void checkWinner(){
     if (gameState[0] == gameState[1] && gameState[0] == gameState[2]){
-
+      winner = true;
     }
     else if(gameState[3] == gameState[4] && gameState[3] == gameState[5]){
-
+      winner = true;
     }
     else if(gameState[6] == gameState[7] && gameState[6] == gameState[8]){
-
+      winner = true;
     }
 
     else if(gameState[0] == gameState[3] && gameState[0] == gameState[6]){
-
+      winner = true;
     }
     else if(gameState[1] == gameState[4] && gameState[1] == gameState[7]){
-
+      winner = true;
     }
     else if(gameState[2] == gameState[5] && gameState[2] == gameState[8]){
-
+      winner = true;
     }
 
     else if(gameState[0] == gameState[4] && gameState[0] == gameState[8]){
-
+      winner = true;
     }
     else if(gameState[2] == gameState[4] && gameState[2] == gameState[6]){
-
+      winner = true;
     }
   }
 
@@ -133,6 +139,9 @@ void resetBtnPressed(){
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Tic Tac Toe',
+      routes: <String, WidgetBuilder>{
+        '/winnerPage': (BuildContext context) => winnerPage.WinnerPage(),
+      },
       home: Scaffold(
         appBar: AppBar(
           title: Text('Tic Tac Toe'),
@@ -227,6 +236,7 @@ void resetBtnPressed(){
               ],
             ),
             RaisedButton(onPressed: () {resetBtnPressed();}, child: Text("Press to reset the game"),),
+            RaisedButton(onPressed: () {openWinnerPage(context);}, child: Text("Go To Winner Page"),),
           ],
         ),
         
