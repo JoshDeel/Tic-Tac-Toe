@@ -1,34 +1,26 @@
 import 'package:flutter/material.dart';
 
-/** 
-class WinnerPage extends StatefulWidget{
-  _WinnerPage createState() => new _WinnerPage();
-  
-}
-*/
-
-
 class WinnerPage extends StatelessWidget{
   @override 
   Widget build(BuildContext context){
     return MaterialApp(
-      title: "WINNER PAGE",
-      home: MainPage(),
-      routes: <String, WidgetBuilder>{
-        '/' : (BuildContext context) => MainPage(),
-      },
+      title: "TEST",
+      home: Page(),
     );
   }
 }
 
-class MainPage extends StatelessWidget{
-  @override
+
+class Page extends StatelessWidget{
+  @override 
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-        title: Text("YES"),
+        title: Text("Winner Page"),
       ),
-      body: Text("SDLKJS:DLKGJ"),
+      body: Center(
+        child: RaisedButton(onPressed: (){Navigator.pop(context);}, child: Text("GO BACK"),),
+      ),
     );
   }
 }
