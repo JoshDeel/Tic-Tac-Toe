@@ -21,13 +21,13 @@ class Page extends StatefulWidget {
 }
 
 class _Page extends State<Page> {
-  
   bool isX = true;
   bool winner = false;
   int turns = 0;
   String player = "X";
-  Color unclickedColor = Colors.grey;
+  Color unclickedColor = Colors.white;
   Color clickedColor = Colors.blue;
+  Color clickedTextColor = Colors.black54;
   int xWins = 0;
   int oWins = 0;
   int catWins = 0;
@@ -199,23 +199,52 @@ class _Page extends State<Page> {
     }
   }
 
+  TextStyle winStrings() {
+    return TextStyle(color: Colors.black, fontSize: 20);
+  }
+
+  Padding button(int btnPos) {
+    return Padding(
+      padding: EdgeInsets.all(5.0),
+      child: RaisedButton(
+        onPressed: isBtnDisabled(btnPos)
+            ? null
+            : () {
+                onPressed(btnPos, this.gameState[btnPos]);
+              },
+        child: Text(this.gameState[btnPos]),
+        color: unclickedColor,
+        disabledColor: clickedColor,
+        disabledTextColor: clickedTextColor,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: Center(
-            child: Text('Tic Tac Toe'),
+            child: Text(
+              'Tic Tac Toe',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 40,
+              ),
+            ),
           ),
+          backgroundColor: Colors.white,
         ),
+        backgroundColor: Colors.red[400],
         body: new Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  Text("X Wins: " + xWins.toString()),
-                  Text("O Wins: " + oWins.toString()),
-                  Text("Cat Wins: " + catWins.toString()),
+                  Text("X Wins: " + xWins.toString(), style: winStrings()),
+                  Text("O Wins: " + oWins.toString(), style: winStrings()),
+                  Text("Cat Wins: " + catWins.toString(), style: winStrings()),
                 ],
               ),
               Center(
@@ -225,135 +254,27 @@ class _Page extends State<Page> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.all(5.0),
-                          child: RaisedButton(
-                            onPressed: isBtnDisabled(0)
-                                ? null
-                                : () {
-                                    onPressed(0, this.gameState[0]);
-                                  },
-                            child: Text(this.gameState[0]),
-                            color: unclickedColor,
-                            disabledColor: clickedColor,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.all(5.0),
-                          child: RaisedButton(
-                            onPressed: isBtnDisabled(1)
-                                ? null
-                                : () {
-                                    onPressed(1, this.gameState[1]);
-                                  },
-                            child: Text(this.gameState[1]),
-                            color: unclickedColor,
-                            disabledColor: clickedColor,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.all(5.0),
-                          child: RaisedButton(
-                            onPressed: isBtnDisabled(2)
-                                ? null
-                                : () {
-                                    onPressed(2, this.gameState[2]);
-                                  },
-                            child: Text(this.gameState[2]),
-                            color: unclickedColor,
-                            disabledColor: clickedColor,
-                          ),
-                        ),
+                        button(0),
+                        button(1),
+                        button(2),
                       ],
                     ),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.all(5.0),
-                          child: RaisedButton(
-                            onPressed: isBtnDisabled(3)
-                                ? null
-                                : () {
-                                    onPressed(3, this.gameState[3]);
-                                  },
-                            child: Text(this.gameState[3]),
-                            color: unclickedColor,
-                            disabledColor: clickedColor,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.all(5.0),
-                          child: RaisedButton(
-                            onPressed: isBtnDisabled(4)
-                                ? null
-                                : () {
-                                    onPressed(4, this.gameState[4]);
-                                  },
-                            child: Text(this.gameState[4]),
-                            color: unclickedColor,
-                            disabledColor: clickedColor,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.all(5.0),
-                          child: RaisedButton(
-                            onPressed: isBtnDisabled(5)
-                                ? null
-                                : () {
-                                    onPressed(5, this.gameState[5]);
-                                  },
-                            child: Text(this.gameState[5]),
-                            color: unclickedColor,
-                            disabledColor: clickedColor,
-                          ),
-                        ),
+                        button(3),
+                        button(4),
+                        button(5),
                       ],
                     ),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.all(5.0),
-                          child: RaisedButton(
-                            onPressed: isBtnDisabled(6)
-                                ? null
-                                : () {
-                                    onPressed(6, this.gameState[6]);
-                                  },
-                            child: Text(this.gameState[6]),
-                            color: unclickedColor,
-                            disabledColor: clickedColor,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.all(5.0),
-                          child: RaisedButton(
-                            onPressed: isBtnDisabled(7)
-                                ? null
-                                : () {
-                                    onPressed(7, this.gameState[7]);
-                                  },
-                            child: Text(this.gameState[7]),
-                            color: unclickedColor,
-                            disabledColor: clickedColor,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.all(5.0),
-                          child: RaisedButton(
-                            onPressed: isBtnDisabled(8)
-                                ? null
-                                : () {
-                                    onPressed(8, this.gameState[8]);
-                                  },
-                            child: Text(this.gameState[8]),
-                            color: unclickedColor,
-                            disabledColor: clickedColor,
-                          ),
-                        ),
+                        button(6),
+                        button(7),
+                        button(8),
                       ],
                     ),
                     ButtonTheme(
